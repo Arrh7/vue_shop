@@ -130,7 +130,7 @@
       :visible.sync="addDialogVisible"
       width="50%"
       @close="addDialogClosed"
-    >
+       >
       <!-- 内容主体区域 -->
       <el-form
         :model="addForm"
@@ -288,7 +288,7 @@ export default {
     },
     // 展示编辑用户对话框
     async showEditDialog(id) {
-      // console.log(id)
+      console.log(id)
       // 多台数据要用字符串拼接
       const { data: res } = await this.$http.get('roles/' + id)
       if (res.meta.status !== 200) {

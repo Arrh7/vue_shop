@@ -38,7 +38,7 @@
             </template>
             <!-- 二级菜单 -->
             <el-menu-item
-            @click="saveNavState('/' + subItem.path)"
+              @click="saveNavState('/' + subItem.path)"
               :index="'/' + subItem.path"
               v-for="subItem in item.children"
               :key="subItem.id"
@@ -53,6 +53,7 @@
           </el-submenu>
         </el-menu>
       </el-aside>
+      <!-- 内容主体 -->
       <el-main>
         <!-- 占位符 -->
         <router-view></router-view>
@@ -79,12 +80,12 @@ export default {
       // 是否折叠
       isCollapse: false,
       // 被激活的链接地址
-       activePath:''
+      activePath: ""
     };
   },
   created() {
     this.getMenuList();
-    this.activePath =window.sessionStorage.getItem('activePath')
+    this.activePath = window.sessionStorage.getItem("activePath");
   },
   methods: {
     logout() {
@@ -96,23 +97,24 @@ export default {
       const { data: res } = await this.$http.get("menus");
       if (res.meta.status !== 200) {
         return this.$message.error(res.meta.msg);
+
+
       }
       this.menulist = res.data;
 
-      // console.log(res);
+      console.log(res);
     },
     // 切换菜单折叠
     toggleCollapse() {
       this.isCollapse = !this.isCollapse;
     },
     // 保存连接激活状态
-    saveNavState(activePath){
+    saveNavState(activePath) {
       // 保存到sessionStorage里 然后取出来赋值
-      window.sessionStorage.setItem('activePath',activePath)
-      this.activePath = activePath
+      window.sessionStorage.setItem("activePath", activePath);
+      this.activePath = activePath;
       // 重新赋值
     }
-
   }
 };
 </script>
